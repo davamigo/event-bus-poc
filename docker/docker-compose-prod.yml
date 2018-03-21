@@ -1,0 +1,67 @@
+version: '2'
+services:
+
+  #############################################################################
+  # See: https://hub.docker.com/_/java/
+  user_service:
+    build: .
+
+    restart: "always"
+
+    container_name: "event_bus_user_service"
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - "../UserService/target/user-service-0.0.1-SNAPSHOT.jar:/app.jar"
+
+    networks:
+      - "event_bus_network"
+
+    links:
+      - "user_database"
+      - "event_bus"
+
+
+  #############################################################################
+  # See: https://hub.docker.com/_/mysql
+  user_database:
+    image: mysql:5.7
+
+    restart: "always"
+
+    container_name: "event_bus_user_database"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: user_service
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: pwd
+
+    ports:
+      - "3307:3306"
+
+    networks:
+      - "event_bus_network"
+
+
+  #############################################################################
+  # See: https://hub.docker.com/r/_/rabbitmq/
+  event_bus:
+    image: rabbitmq:3-management
+
+    restart: "always"
+
+    container_name: "event_bus_rabbitmq"
+
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+    networks:
+      - "event_bus_network"
+
+networks:
+  event_bus_network:
+    driver: bridge
