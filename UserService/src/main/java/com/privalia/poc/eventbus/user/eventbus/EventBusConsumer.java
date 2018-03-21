@@ -68,19 +68,25 @@ public class EventBusConsumer {
      * @throws IOException when error deserializing
      */
     private DomainEvent decodeEvent(String rawEvent) throws IOException {
-        StringBuilder eventData = new StringBuilder();
-        String[] nums = rawEvent.split("\\,");
-        for(String num : nums) {
-            int n = Integer.parseInt(num);
-            eventData.append((char) n);
+
+        String eventDecoded;
+        try {
+            StringBuilder eventData = new StringBuilder();
+            String[] nums = rawEvent.split("\\,");
+            for (String num : nums) {
+                int n = Integer.parseInt(num);
+                eventData.append((char) n);
+            }
+
+            eventDecoded = eventData.toString();
+
+            LOGGER.info(
+                    "Event Bus Consumer - Event decoded." +
+                    "\n\tEvent data=\"" + eventDecoded + "\""
+            );
+        } catch (java.lang.NumberFormatException exc) {
+            eventDecoded = rawEvent;
         }
-
-        String eventDecoded = eventData.toString();
-
-        LOGGER.info(
-                "Event Bus Consumer - Event decoded." +
-                "\n\tEvent data=\"" + eventDecoded + "\""
-        );
 
         return EventDeserializer.deserialize(eventDecoded);
     }

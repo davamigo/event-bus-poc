@@ -46,9 +46,9 @@ public class User {
     public User() {
         this.id = 0L;
         this.globalId = 0L;
-        this.firstName = "";
-        this.lastName = "";
-        this.address = "";
+        this.setFirstName(null);
+        this.setLastName(null);
+        this.setAddress(null);
     }
 
     /**

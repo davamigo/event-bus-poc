@@ -52,10 +52,7 @@ public class UserLoggedInHandler {
             // Send user created event
             publishUserCreatedEvent(userEntity);
 
-        } else if (userEntity.getGlobalId() < 1
-                || !userEntity.getFirstName().equals(userLoggedInEvent.firstName())
-                || !userEntity.getLastName().equals(userLoggedInEvent.lastName())
-                || !userEntity.getAddress().equals(userLoggedInEvent.address())) {
+        } else if (userUpdatedRequired(userEntity, userLoggedInEvent)) {
 
             // Update global ID if needed
             if (userEntity.getGlobalId() < 1) {
@@ -98,10 +95,18 @@ public class UserLoggedInHandler {
      * @return true if an updated is needed
      */
     private boolean userUpdatedRequired(User user, UserLoggedIn event) {
-        return user.getGlobalId() < 1
-                || !user.getFirstName().equals(event.firstName())
-                || !user.getLastName().equals(event.lastName())
-                || !user.getAddress().equals(event.address());
+
+        if (user.getGlobalId() < 1) {
+            return true;
+        }
+
+        String firstName = (null == event.firstName()) ? "" : event.firstName();
+        String lastName = (null == event.lastName()) ? "" : event.lastName();
+        String address = (null == event.address()) ? "" : event.address();
+
+        return !user.getFirstName().equals(firstName)
+                || !user.getLastName().equals(lastName)
+                || !user.getAddress().equals(address);
     }
 
     /**
