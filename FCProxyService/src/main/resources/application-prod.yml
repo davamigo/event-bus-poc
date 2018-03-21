@@ -1,0 +1,11 @@
+server:
+  port: 80
+
+spring:
+  rabbitmq:
+    host: "event_bus"
+    port: "5672"
+    username: "guest"
+    password: "guest"
+    virtual-host: "/"
+
