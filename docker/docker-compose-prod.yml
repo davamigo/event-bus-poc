@@ -3,6 +3,28 @@ services:
 
   #############################################################################
   # See: https://hub.docker.com/_/java/
+  fcproxy_service:
+    build: .
+
+    restart: "always"
+
+    container_name: "event_bus_fcproxy_service"
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - "../FCProxyService/target/fcproxy-service-0.0.1-SNAPSHOT.jar:/app.jar"
+
+    networks:
+      - "event_bus_network"
+
+    links:
+      - "event_bus"
+
+
+  #############################################################################
+  # See: https://hub.docker.com/_/java/
   user_service:
     build: .
 
@@ -11,7 +33,7 @@ services:
     container_name: "event_bus_user_service"
 
     ports:
-      - "8080:8080"
+      - "8081:80"
 
     volumes:
       - "../UserService/target/user-service-0.0.1-SNAPSHOT.jar:/app.jar"
