@@ -37,6 +37,17 @@ public class User {
     }
 
     /**
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
+        return "{id=" + id +
+                ", firstName=\"" + firstName + "\"" +
+                ", lastName=\"" + lastName + "\"" +
+                ", address=\"" + address + "\"}";
+    }
+
+    /**
      * @return Get id of the fcproxy
      */
     public long getId() {
