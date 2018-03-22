@@ -1,9 +1,12 @@
 package com.privalia.poc.eventbus.fcproxy.entity;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 /**
- * The fcproxy entity
+ * The user entity
  *
  * @author david.amigo
  */
@@ -39,10 +42,10 @@ public class User {
     /**
      * Constructor
      *
-     * @param id        the id of the fcproxy
-     * @param firstName the first name of the fcproxy
-     * @param lastName  the last name of the fcproxy
-     * @param address   the address of the fcproxy
+     * @param id        the id of the user
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param address   the address of the user
      */
     public User(long id, String firstName, String lastName, String address) {
         this.setId(id);
@@ -63,14 +66,14 @@ public class User {
     }
 
     /**
-     * @return Get id of the fcproxy
+     * @return Get id of the user
      */
     public long getId() {
         return id;
     }
 
     /**
-     * @param id Get id of the fcproxy
+     * @param id Get id of the user
      * @return this
      */
     public User setId(long id) {
@@ -79,14 +82,14 @@ public class User {
     }
 
     /**
-     * @return the first name of the fcproxy
+     * @return the first name of the user
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * @param firstName the first name of the fcproxy
+     * @param firstName the first name of the user
      * @return this
      */
     public User setFirstName(String firstName) {
@@ -95,14 +98,14 @@ public class User {
     }
 
     /**
-     * @return the last name of the fcproxy
+     * @return the last name of the user
      */
     public String getLastName() {
         return lastName;
     }
 
     /**
-     * @param lastName the last name of the fcproxy
+     * @param lastName the last name of the user
      * @return this
      */
     public User setLastName(String lastName) {
@@ -111,14 +114,14 @@ public class User {
     }
 
     /**
-     * @return the address of the fcproxy
+     * @return the address of the user
      */
     public String getAddress() {
         return address;
     }
 
     /**
-     * @param address the address of the fcproxy
+     * @param address the address of the user
      * @return this
      */
     public User setAddress(String address) {

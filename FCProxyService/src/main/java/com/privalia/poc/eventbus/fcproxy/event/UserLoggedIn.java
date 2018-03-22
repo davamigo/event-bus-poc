@@ -8,7 +8,7 @@ import com.privalia.poc.eventbus.fcproxy.entity.User;
 import java.util.Date;
 
 /**
- * Event which indicates an fcproxy has logged in FC
+ * Event which indicates an user has logged in FC
  *
  * @author david.amigo
  */
@@ -26,10 +26,10 @@ public class UserLoggedIn implements DomainEvent {
     /**
      * Basic Constructor
      *
-     * @param id        the id of the fcproxy
-     * @param firstName the first name of the fcproxy
-     * @param lastName  the last name of the fcproxy
-     * @param address   the address of the fcproxy
+     * @param id        the id of the user
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param address   the address of the user
      */
     public UserLoggedIn(long id, String firstName, String lastName, String address) {
         this.id = id;
@@ -40,9 +40,9 @@ public class UserLoggedIn implements DomainEvent {
     }
 
     /**
-     * Constructor from an fcproxy entity
+     * Constructor from an user entity
      *
-     * @param user the fcproxy entity
+     * @param user the user entity
      */
     public UserLoggedIn(User user) {
         this.id = user.getId();
@@ -88,28 +88,28 @@ public class UserLoggedIn implements DomainEvent {
     }
 
     /**
-     * @return the id of the fcproxy
+     * @return the id of the user
      */
     public long id() {
         return this.id;
     }
 
     /**
-     * @return the first name of the fcproxy
+     * @return the first name of the user
      */
     public String firstName() {
         return this.firstName;
     }
 
     /**
-     * @return the last name of the fcproxy
+     * @return the last name of the user
      */
     public String lastName() {
         return this.lastName;
     }
 
     /**
-     * @return the address og the fcproxy
+     * @return the address og the user
      */
     public String address() {
         return this.address;

@@ -34,9 +34,9 @@ public class ApiController {
     EventBusPublisher publisher;
 
     /**
-     * Controller action called when an fcproxy logged in in the FC app. The post body is the fcproxy data
+     * Controller action called when an user logged in in the FC app. The post body is the user data
      *
-     * @param user the fcproxy data
+     * @param user the user data
      */
     @PostMapping("/user/logged-id")
     public ResponseEntity userLoggedIn(@RequestBody @Valid User user) {
