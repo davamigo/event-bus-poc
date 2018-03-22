@@ -1,5 +1,6 @@
 package com.privalia.poc.eventbus.user.service;
 
+import com.privalia.poc.eventbus.user.core.DomainEvent;
 import com.privalia.poc.eventbus.user.core.EventHandlerException;
 import com.privalia.poc.eventbus.user.event.UserCreated;
 import com.privalia.poc.eventbus.user.event.UserLoggedIn;
@@ -14,7 +15,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Handler class for UserLoggedIn event
@@ -25,7 +29,10 @@ import java.util.Random;
 public class UserLoggedInHandler {
 
     /** Logger */
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBusPublisher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserLoggedInHandler.class);
+
+    @Autowired
+    private Validator validator;
 
     @Autowired
     private IUserRepository userRepository;
@@ -37,9 +44,17 @@ public class UserLoggedInHandler {
      * Handles the UserLoggedIn event
      *
      * @param userLoggedInEvent the received event
-     * @throws EventHandlerException
+     * @throws EventHandlerException when an error occurred
      */
     public void handle(UserLoggedIn userLoggedInEvent) throws EventHandlerException {
+
+        // Validate the UserLoggerIn event
+        Set<ConstraintViolation<DomainEvent>> result = validator.validate(userLoggedInEvent);
+        if (result.size() > 0) {
+            // Error: Validation error
+            LOGGER.error("Event Bus Consumer - Event validation error: " + result.toString() + "");
+            return;
+        }
 
         // Find the user in the database
         User userEntity = userRepository.findUserById(userLoggedInEvent.id());

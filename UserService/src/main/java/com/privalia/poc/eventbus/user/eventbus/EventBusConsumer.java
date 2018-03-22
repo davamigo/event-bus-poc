@@ -19,7 +19,7 @@ import java.io.IOException;
 public class EventBusConsumer {
 
     /** Logger */
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventBusPublisher.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventBusConsumer.class);
 
     @Autowired
     private UserLoggedInHandler userLoggedInHandler;

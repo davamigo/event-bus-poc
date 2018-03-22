@@ -4,6 +4,11 @@ import com.privalia.poc.eventbus.user.core.DomainEvent;
 import com.privalia.poc.eventbus.user.core.EventPayload;
 import com.privalia.poc.eventbus.user.core.EventPayloadHashMap;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.Date;
 
 /**
@@ -14,12 +19,26 @@ import java.util.Date;
 public class UserLoggedIn implements DomainEvent {
 
     /** Event payload */
+
+    @Min(1)
     private long id;
+
+    @NotNull
+    @NotEmpty
+    @Size(max=48)
     private String firstName;
+
+    @NotNull
+    @NotEmpty
+    @Size(max=72)
     private String lastName;
+
+    @Size(max=128)
     private String address;
 
-    /** Event data */
+    /** Event meta data */
+
+    @NotNull
     private Date timestamp;
 
     /**

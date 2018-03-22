@@ -1,11 +1,13 @@
 package com.privalia.poc.eventbus.user.model;
 
-import com.privalia.poc.eventbus.user.event.UserLoggedIn;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * The user entity
@@ -24,19 +26,29 @@ import javax.persistence.Table;
 @Table(name = "user")
 public class User {
 
+    @NotNull
+    @Min(1)
     @Id
     @Column(name="id")
     private long id;
 
+    @NotNull
     @Column(name="global_id")
     private long globalId;
 
+    @NotEmpty
+    @NotNull
+    @Size(max=48)
     @Column(name="first_name", length=48)
     private String firstName;
 
+    @NotEmpty
+    @NotNull
+    @Size(max=72)
     @Column(name="last_name", length=72)
     private String lastName;
 
+    @Size(max=128)
     @Column(name="address", length=128)
     private String address;
 
@@ -44,8 +56,8 @@ public class User {
      * Default constructor
      */
     public User() {
-        this.id = 0L;
-        this.globalId = 0L;
+        this.setId(0L);
+        this.setGlobalId(0L);
         this.setFirstName(null);
         this.setLastName(null);
         this.setAddress(null);
