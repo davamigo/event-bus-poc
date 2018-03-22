@@ -1,14 +1,29 @@
 package com.privalia.poc.eventbus.fcproxy.entity;
 
+import javax.validation.constraints.*;
+
 /**
  * The fcproxy entity
  *
  * @author david.amigo
  */
 public class User {
+
+    @NotNull
+    @Min(1)
     private long id;
+
+    @NotNull
+    @NotEmpty
+    @Size(max=48)
     private String firstName;
+
+    @NotNull
+    @NotEmpty
+    @Size(max=72)
     private String lastName;
+
+    @Size(max=128)
     private String address;
 
     /**

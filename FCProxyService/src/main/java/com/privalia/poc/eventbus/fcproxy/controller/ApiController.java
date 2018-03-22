@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
+import javax.validation.Valid;
+
 /**
  * API controller
  *
@@ -37,7 +39,7 @@ public class ApiController {
      * @param user the fcproxy data
      */
     @PostMapping("/user/logged-id")
-    public ResponseEntity userLoggedIn(@RequestBody User user) {
+    public ResponseEntity userLoggedIn(@RequestBody @Valid User user) {
 
         LOGGER.info("Api Controller - User logged in: " + user.toString());
 
