@@ -24,6 +24,28 @@ services:
 
 
   #############################################################################
+  # See: https://hub.docker.com/_/mysql
+  basket_database:
+    image: mysql:5.7
+
+    restart: "always"
+
+    container_name: "event_bus_basket_database"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: basket_service
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: pwd
+
+    ports:
+      - "3308:3306"
+
+    networks:
+      - "event_bus_network"
+
+
+  #############################################################################
   # See: https://hub.docker.com/r/_/rabbitmq/
   event_bus:
     image: rabbitmq:3-management

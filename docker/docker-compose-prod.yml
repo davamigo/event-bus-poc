@@ -47,6 +47,29 @@ services:
 
 
   #############################################################################
+  # See: https://hub.docker.com/_/java/
+  basket_service:
+    build: .
+
+    restart: "always"
+
+    container_name: "event_bus_basket_service"
+
+    ports:
+      - "8082:80"
+
+    volumes:
+      - "../BasketService/target/basket-service-0.0.1-SNAPSHOT.jar:/app.jar"
+
+    networks:
+      - "event_bus_network"
+
+    links:
+      - "basket_database"
+      - "event_bus"
+
+
+  #############################################################################
   # See: https://hub.docker.com/_/mysql
   user_database:
     image: mysql:5.7
@@ -63,6 +86,28 @@ services:
 
     ports:
       - "3307:3306"
+
+    networks:
+      - "event_bus_network"
+
+
+  #############################################################################
+  # See: https://hub.docker.com/_/mysql
+  basket_database:
+    image: mysql:5.7
+
+    restart: "always"
+
+    container_name: "event_bus_basket_database"
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: basket_service
+      MYSQL_USER: usr
+      MYSQL_PASSWORD: pwd
+
+    ports:
+      - "3308:3306"
 
     networks:
       - "event_bus_network"
