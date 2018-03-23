@@ -29,3 +29,5 @@ Event bus proof of concept with RabbitMQ and Spring Boot microservices.
 * **`event_bus`**
 
     * RabbitMQ server.
+
+![Architecture](docs/event-bus-demo2.png?raw=true Architecture)
