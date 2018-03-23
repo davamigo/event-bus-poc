@@ -2,6 +2,8 @@
 
 Event bus proof of concept with RabbitMQ and Spring Boot microservices. 
 
+## Components
+
 * **`fcproxy_service`**
 
     * Rest controller **`POST /user/logged-in`**.
@@ -30,4 +32,10 @@ Event bus proof of concept with RabbitMQ and Spring Boot microservices.
 
     * RabbitMQ server.
 
+## Architecture
+
 ![Architecture](docs/event-bus-demo2.png?raw=true Architecture)
+
+## Downloads
+
+[Slides (PDF)](docs/event-bus-slides.pdf)
