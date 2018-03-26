@@ -4,8 +4,6 @@ dockerfile="docker-compose-prod.yml"
 dir=$(dirname $0)
 cd $dir
 
-echo -e "Starting $dockerfile..."
-
 docker-compose -f $dockerfile build
 if [ $? -ne 0 ]; then
     exit 1
