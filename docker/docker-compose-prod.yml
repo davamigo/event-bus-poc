@@ -72,62 +72,25 @@ services:
   #############################################################################
   # See: https://hub.docker.com/_/mysql
   user_database:
-    image: mysql:5.7
-
-    restart: "always"
-
-    container_name: "event_bus_user_database"
-
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: user_service
-      MYSQL_USER: usr
-      MYSQL_PASSWORD: pwd
-
-    ports:
-      - "3307:3306"
-
-    networks:
-      - "event_bus_network"
+    extends:
+      file: docker-compose-dev.yml
+      service: user_database
 
 
   #############################################################################
   # See: https://hub.docker.com/_/mysql
   basket_database:
-    image: mysql:5.7
-
-    restart: "always"
-
-    container_name: "event_bus_basket_database"
-
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: basket_service
-      MYSQL_USER: usr
-      MYSQL_PASSWORD: pwd
-
-    ports:
-      - "3308:3306"
-
-    networks:
-      - "event_bus_network"
+    extends:
+      file: docker-compose-dev.yml
+      service: basket_database
 
 
   #############################################################################
   # See: https://hub.docker.com/r/_/rabbitmq/
   event_bus:
-    image: rabbitmq:3-management
-
-    restart: "always"
-
-    container_name: "event_bus_rabbitmq"
-
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-
-    networks:
-      - "event_bus_network"
+    extends:
+      file: docker-compose-dev.yml
+      service: event_bus
 
 networks:
   event_bus_network:
