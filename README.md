@@ -34,8 +34,17 @@ Event bus proof of concept with RabbitMQ and Spring Boot microservices.
 
 ## Architecture
 
-![Architecture](docs/event-bus-demo2.png?raw=true Architecture)
+![Architecture](docs/event-bus-demo2.png "Architecture")
+
+## Download the project from Github
+
+```shell
+git clone git@github.com:davamigo/event-bus-poc.git
+```
+
+
 
 ## Downloads
 
 [Slides (PDF)](docs/event-bus-slides.pdf)
+
